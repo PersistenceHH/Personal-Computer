@@ -1,0 +1,28 @@
+git config --list  查看当前用户信息
+
+>>>>>>>>>第一个要配置的是你个人的用户名称和电子邮件地址:  
+1. $ git config --global user.name "xianbai” 配置用户名
+2. $ git config --global user.email xianbai@example.com 配置邮箱  
+3. 用了 --global 选项，那么更改的配置文件就是位于你用户主目录下的那个，以后你所有的项目都会默认使用这里配置的用户信息。
+-
+
+>>>>>>>>>只更改当前项目的用户信息:
+1. 先查看一下未设置前的config  
+    cat .git/config
+2. $ git config  user.name "xianbai” 配置用户名
+3. $ git config  user.email xianbai@example.com 配置邮箱
+4. 查看修改后的项目配置cat .git/config
+-
+
+>>>>>>>>>生成SSH密钥过程：
+1.查看是否已经有了ssh密钥：cd ~/.ssh
+    如果没有密钥则不会有此文件夹，有则备份删除
+2.生存密钥：
+$ ssh-keygen -t rsa -C “小兵@example.com”
+
+按3个回车，密码为空，再次查看.ssh文件中得到了两个文件：id_rsa和id_rsa.pub，其中id_rsa.pub就是我们要使用的那个
+复制里面的全部内容，粘贴到github获取自己的git服务器ssh_key指定位置.
+测试是否添加成：
+ssh -T git@github.com
+如果成功有如下提示：
+Hi xianbai! You've successfully authenticated, but GitHub does not provide shell access.
